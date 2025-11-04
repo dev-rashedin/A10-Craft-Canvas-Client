@@ -61,7 +61,7 @@ const router = createBrowserRouter([
           fetch('https://craft-canvas-server-hazel.vercel.app/items'),
       },
       {
-        path: '/:subcategory_name',
+        path: 'subcategory/:subcategory_name',
         element: <SubCategory />,
         loader: () =>
           fetch('https://craft-canvas-server-hazel.vercel.app/items'),
