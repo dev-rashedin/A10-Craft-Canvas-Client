@@ -3,6 +3,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import { StatusCodes } from 'http-status-toolkit';
 
 const schema = z.object({
   image: z.string().url('Invalid URL').min(1, 'Image is required'),
@@ -75,7 +76,7 @@ const AddItemForm = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.insertedId) {
+        if (data.insertedId || data.status === StatusCodes.CREATED) {
           Swal.fire({
             title: 'Success!',
             text: 'Item Added Successfully',
